@@ -12,12 +12,11 @@ instance (Show a) => Show (Tree a) where
   show (Leaf x) = " " ++ show x ++ " "
   show (Node _ l r) = show l ++ show r
 
-empty :: Digit a
-empty = Zero
+empty :: RList a
+empty = []
 
-isEmpty :: Digit a -> Bool
-isEmpty Zero = True
-isEmpty _ = False
+isEmpty :: RList a -> Bool
+isEmpty = null
 
 cons :: a -> RList a -> RList a
 cons x ts = insTree (Leaf x) ts
