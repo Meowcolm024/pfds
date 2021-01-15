@@ -1,3 +1,3 @@
 # pfds
 
-Purely functional data structure in Haskell
+Purely functional data structure in Haskell.
