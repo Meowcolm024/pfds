@@ -1,4 +1,4 @@
-module RList where
+module RList where  -- Random Access List
 
 data Tree a = Leaf a | Node Int (Tree a) (Tree a) deriving (Eq)
 

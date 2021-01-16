@@ -1,4 +1,4 @@
-module Merge where
+module BUMergeSort where
 
 data Sortable a = Sortable
   { less :: a -> a -> Bool,
