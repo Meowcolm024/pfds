@@ -1,4 +1,4 @@
-module BUMergeSort where
+module BUMergeSort where -- Bottom Up Merge-Sort
 
 data Sortable a = Sortable
   { less :: a -> a -> Bool,
@@ -6,31 +6,34 @@ data Sortable a = Sortable
     segments :: [[a]]
   }
 
-instance (Show a) => Show (Sortable a) where
-  show (Sortable _ s seg) = "Size: " ++ show s ++ "\n Seg: " ++ show seg
+instance Show a => Show (Sortable a) where
+    show (Sortable _ s seg) = "Size: " ++ show s ++ "\nSeg: " ++ show seg
 
-merge :: (Ord a, Eq a) => (a -> a -> Bool) -> [a] -> [a] -> [a]
-merge f xss yss = mrg xss yss
+merge :: Ord a => (a -> a -> Bool) -> [a] -> [a] -> [a]
+merge f = mrg
   where
     mrg [] ys = ys
     mrg xs [] = xs
-    mrg (x : xs) (y : ys)
-      | f x y = x : mrg xs (y : ys)
-      | otherwise = y : mrg (x : xs) ys
+    mrg (x : xs) (y : ys) =
+        if x `f` y then x : mrg xs (y : ys) else y : mrg (x : xs) ys
 
-new :: (Ord a, Eq a) => (a -> a -> Bool) -> Sortable a
+new :: Ord a => (a -> a -> Bool) -> Sortable a
 new f = Sortable f 0 []
 
-add :: (Ord a, Eq a) => a -> Sortable a -> Sortable a
-add x (Sortable f size' segs') = Sortable f (size' + 1) (addSeg [x] segs' size')
+add :: Ord a => a -> Sortable a -> Sortable a
+add x (Sortable f size' segs') = Sortable f
+                                          (size' + 1)
+                                          (addSeg [x] segs' size')
   where
-    addSeg s sg sz = if even sz then s : sg else addSeg (merge f s (head sg)) (tail sg) (sz `div` 2)
+    addSeg seg segs sz = if even sz
+        then seg : segs
+        else addSeg (merge f seg (head segs)) (tail segs) (sz `div` 2)
 
-sort :: (Ord a, Eq a) => Sortable a -> [a]
+sort :: Ord a => Sortable a -> [a]
 sort (Sortable f _ segs) = mergeAll [] segs
   where
-    mergeAll xs [] = xs
+    mergeAll xs []       = xs
     mergeAll xs (y : ys) = mergeAll (merge f xs y) ys
 
-listToSortable :: (Ord a, Eq a) => [a] -> Sortable a
-listToSortable xs = Sortable (<) (length xs) (map pure xs)
+fromList :: Ord a => [a] -> Sortable a
+fromList = foldr add (new (<))

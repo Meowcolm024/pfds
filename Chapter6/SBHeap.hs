@@ -24,7 +24,7 @@ root :: Tree a -> a
 root (Node _ x _ _) = x
 
 link :: Tree a -> Tree a -> Tree a
-link t1@(Node r x1 xs1 c1) t2@(Node _ x2 xs2 c2) = if x1 < x2
+link t1@(Node r x1 xs1 c1) t2@(Node _ x2 xs2 c2) = if x1 <= x2
     then Node (r + 1) x1 xs1 (t2 : c1)
     else Node (r + 1) x2 xs2 (t1 : c2)
 
@@ -79,7 +79,7 @@ deleteMin ts =
     getMin [t] = (t, [])
     getMin (t : ts) =
         let (t', ts') = getMin ts
-        in  if root t < root t' then (t, ts) else (t', t : ts')
+        in  if root t <= root t' then (t, ts) else (t', t : ts')
     insertAll []       ts = ts
     insertAll (x : xs) ts = insertAll xs (insert x ts)
 

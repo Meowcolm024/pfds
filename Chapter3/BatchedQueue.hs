@@ -1,17 +1,10 @@
 module BatchedQueue where
 
-data Queue a = Queue [a] [a] deriving (Show)
-
-{- 
-tailQ' :: Queue a -> Queue a
-tailQ' (Queue [_] r) = Queue (reverse r) []
-tailQ' (Queue (_ : xs) ys) = Queue xs ys
-
--- snoc <--> cons ; add from the back :)
-snocQ' :: Queue a -> a -> Queue a
-snocQ' (Queue [] _) x = Queue [x] []
-snocQ' (Queue xs ys) y = Queue xs (y : ys)
- -}
+data Queue a = Queue
+  { f :: [a],
+    r :: [a]
+  }
+  deriving (Show)
 
 empty :: Queue a
 empty = Queue [] []

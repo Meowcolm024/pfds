@@ -25,7 +25,7 @@ isEmpty = null
 
 link :: Tree a -> Tree a -> Tree a
 link t1@(Node r x1 c1) t2@(Node _ x2 c2) =
-    if x1 < x2 then Node (r + 1) x1 (t2 : c1) else Node (r + 1) x2 (t1 : c2)
+    if x1 <= x2 then Node (r + 1) x1 (t2 : c1) else Node (r + 1) x2 (t1 : c2)
 
 insTree :: Tree a -> Heap a -> Heap a
 insTree t [] = [t]
@@ -51,7 +51,7 @@ findMin [t] = root t
 findMin (t : ts) =
     let x = root t
         y = findMin ts
-    in  if x < y then x else y
+    in  if x <= y then x else y
 
 deleteMin :: Ord a => Heap a -> Heap a
 deleteMin [] = error "Empty Heap!"
@@ -60,7 +60,7 @@ deleteMin ts = let (Node _ _ ts1, ts2) = getMin ts in merge (reverse ts1) ts2
     getMin [t] = (t, [])
     getMin (t : ts) =
         let (t', ts') = getMin ts
-        in  if (root t) < (root t') then (t, ts) else (t', t : ts')
+        in  if root t <= root t' then (t, ts) else (t', t : ts')
     getMin _ = undefined
 
 fromList :: Ord a => [a] -> Heap a
