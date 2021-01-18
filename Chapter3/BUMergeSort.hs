@@ -34,6 +34,7 @@ sort (Sortable f _ segs) = mergeAll [] segs
   where
     mergeAll xs []       = xs
     mergeAll xs (y : ys) = mergeAll (merge f xs y) ys
+    -- note: mergeAll == foldl (merge f)
 
 fromList :: Ord a => [a] -> Sortable a
 fromList = foldr add (new (<))

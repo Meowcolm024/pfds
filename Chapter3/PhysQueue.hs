@@ -41,8 +41,8 @@ head' Queue { w = (x : _) } = x
 
 tail' :: Queue a -> Queue a
 tail' Queue { w = [] } = error "Empty Queue!"
-tail' (Queue (_ : w') f' lenF' r' lenR') =
-    let g = tail f' in g `seq` queue $ Queue w' g (lenF' - 1) r' lenR'
+tail' (Queue (_ : w') !f' lenF' r' lenR') =
+    queue $ Queue w' (tail f') (lenF' - 1) r' lenR'
 
 fromList :: [a] -> Queue a
 fromList = foldl snoc empty
