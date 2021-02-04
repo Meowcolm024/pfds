@@ -29,9 +29,5 @@ tail' :: Queue a -> Queue a
 tail' (Queue []       _  _  _ ) = error "Empty Queue!"
 tail' (Queue (_ : fx) lf rx lr) = queue $ Queue fx (lf - 1) rx lr
 
-listToQueue :: [a] -> Queue a
-listToQueue [] = empty
-listToQueue xs =
-    let mid    = length xs `div` 2
-        (p, q) = splitAt mid xs
-    in  Queue p (length p) (reverse q) (length q)
+fromList :: [a] -> Queue a
+fromList = foldl snoc empty
