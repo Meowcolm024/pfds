@@ -1,4 +1,4 @@
-module Sparse where
+module Chapter6.Sparse where
 
 type Nat = [Int]
 

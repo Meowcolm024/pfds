@@ -1,6 +1,6 @@
 {-# LANGUAGE BangPatterns #-}
 
-module PhysQueue where      -- Physicists Queue
+module Chapter3.PhysQueue where      -- Physicists Queue
 
 data Queue a = Queue
   { w :: ![a],

@@ -1,4 +1,4 @@
-module BankersQueue where
+module Chapter3.BankersQueue where
 
 data Queue a = Queue
   { f :: [a],

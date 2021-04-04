@@ -1,4 +1,4 @@
-module BatchedQueue where
+module Chapter3.BatchedQueue where
 
 data Queue a = Queue
   { f :: [a],

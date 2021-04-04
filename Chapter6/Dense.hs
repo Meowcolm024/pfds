@@ -1,4 +1,4 @@
-module Dense where
+module Chapter6.Dense where
 
 data Dight = Zero | One deriving (Show, Eq)
 

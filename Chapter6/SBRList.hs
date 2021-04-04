@@ -1,4 +1,4 @@
-module SKRList where    -- Skew Binary Random Access List
+module Chapter6.SBRList where    -- Skew Binary Random Access List
 
 data Tree a = Leaf a | Node a (Tree a) (Tree a) deriving (Show)
 type RList a = [(Int, Tree a)]

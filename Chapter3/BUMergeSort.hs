@@ -1,4 +1,4 @@
-module BUMergeSort where -- Bottom Up Merge-Sort
+module Chapter3.BUMergeSort where -- Bottom Up Merge-Sort
 
 data Sortable a = Sortable
   { less :: a -> a -> Bool,

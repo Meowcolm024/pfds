@@ -1,4 +1,4 @@
-module RTQueue where
+module Chapter4.RTQueue where
 
 data Queue a = Queue
   { f :: [a],
@@ -8,6 +8,7 @@ data Queue a = Queue
   deriving (Show)
 
 -- |s| = |f| - |r|
+
 rotate :: [a] -> [a] -> [a] -> [a]
 rotate [] (y : _) a = y : a
 rotate (x : f') (y : r') a = x : rotate f' r' (y : a)

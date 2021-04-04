@@ -1,6 +1,6 @@
 {-# LANGUAGE GADTs #-}
 
-module Heap where
+module Chapter6.Heap where
 
 data Tree a where
   Node :: Ord a => Int -> a -> [Tree a] -> Tree a

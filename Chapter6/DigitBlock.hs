@@ -1,4 +1,4 @@
-module Digitblock where
+module Chapter6.DigitBlock where
 
 data Digitblock = Zeros Int | Ones Int deriving (Show, Eq)
 

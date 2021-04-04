@@ -1,4 +1,4 @@
-module SkewBin where
+module Chapter6.SkewBin where
 
 type Nat = [Int]
 

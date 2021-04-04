@@ -1,5 +1,5 @@
 {-# LANGUAGE GADTs #-}
-module SBHeap where     -- Skew Binomial Heap
+module Chapter6.SBHeap where     -- Skew Binomial Heap
 
 data Tree a where
     Node :: Ord a => Int -> a -> [a] -> [Tree a] -> Tree a
